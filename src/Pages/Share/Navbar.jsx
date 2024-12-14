@@ -18,6 +18,7 @@ const Navbar = () => {
       <li>
         <NavLink to="/login">Login</NavLink>
       </li>
+      <li><NavLink to='/myapplication'>My Application</NavLink></li>
     </>
   );
   const  logout=()=>{
@@ -59,7 +60,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn rounded-full btn-ghost text-xl"><img className='rounded-full w-12' src={ic} alt="" srcset="" /></a>
+        <a className="btn rounded-full btn-ghost text-xl"><img className='rounded-full w-12' src={ic} alt="" /></a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

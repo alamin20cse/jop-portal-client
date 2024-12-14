@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import reg1 from '../assets/reg1.json'
 import Lottie from 'lottie-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContex } from './AuthProvider';
 
 const Login = () => {
     const {signin,handelGooglSign}=useContext(AuthContex)
+    const location=useLocation();
+    const navigate=useNavigate();
+
+    const from=location.state || '/';
 
     const handlelogin=(e)=>{
 
@@ -18,14 +22,30 @@ const Login = () => {
         signin(email,password)
         .then(result=>{
             console.log(result.user)
+            alert('successfully')
+            navigate(from)
         })
         .catch(error=>{
-            console.log(error.message);
+            alert(error.message);
         })
 
 
 
     }
+    const handleGoogleLogin = () => {
+      handelGooglSign()
+          .then((result) => {
+              console.log(result.user);
+              alert('Google login successful!');
+              navigate(from);
+          })
+          .catch((error) => {
+              alert(error.message);
+          });
+  };
+
+
+
     return (
        
   <div className='lg:flex'>
@@ -72,11 +92,11 @@ const Login = () => {
             <button type="submit" className="btn btn-primary">Login</button>
           </div>
         </form>
-        <p onClick={handelGooglSign} className='btn btn-primary'>Login with Google</p>
+        <p onClick={handleGoogleLogin} className='btn btn-primary'>Login with Google</p>
   
   
         <p className='mt-4 text-center'>
-          Are you new? <Link className='text-red-600 font-bold' to='/regiester'>Login</Link>
+          Are you new? <Link className='text-red-600 font-bold' to='/register'>Register</Link>
         </p>
       </div>
     </div>

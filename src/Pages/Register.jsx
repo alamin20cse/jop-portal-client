@@ -24,10 +24,11 @@ const Register = () => {
     creatUser(email,password)
     .then(result=>{
       console.log(result.user);
+      alert('successfully ')
       
     })
     .catch(error=>{
-      console.log(error.message);
+      alert(error.message);
     })
 
   
