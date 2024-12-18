@@ -3,6 +3,7 @@ import reg1 from '../assets/reg1.json'
 import Lottie from 'lottie-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContex } from './AuthProvider';
+import axios from 'axios';
 
 const Login = () => {
     const {signin,handelGooglSign}=useContext(AuthContex)
@@ -21,9 +22,30 @@ const Login = () => {
 
         signin(email,password)
         .then(result=>{
-            console.log(result.user)
+            // console.log(result.user)
+            const user={email:email}
+            axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+            .then(res=>{
+              console.log(res.data);
+            })
+
+
+
+
+
+
+
             alert('successfully')
-            navigate(from)
+
+
+
+
+
+
+
+
+            
+            // navigate(from)
         })
         .catch(error=>{
             alert(error.message);
@@ -36,7 +58,9 @@ const Login = () => {
       handelGooglSign()
           .then((result) => {
               console.log(result.user);
+            
               alert('Google login successful!');
+              
               navigate(from);
           })
           .catch((error) => {

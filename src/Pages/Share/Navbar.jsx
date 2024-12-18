@@ -19,6 +19,8 @@ const Navbar = () => {
         <NavLink to="/login">Login</NavLink>
       </li>
       <li><NavLink to='/myapplication'>My Application</NavLink></li>
+      <li><NavLink to='/addjob'>Add Job</NavLink></li>
+      <li><NavLink to='/mypostedjobs'>My Posted Jobs</NavLink></li>
     </>
   );
   const  logout=()=>{
