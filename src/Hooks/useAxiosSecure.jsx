@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { nav } from 'motion/react-client';
 
 const axiosInstance=axios.create({
-    baseURL:'http://localhost:5000',
+    baseURL:'https://jop-portal-server.vercel.app',
     withCredentials: true,
 });
 

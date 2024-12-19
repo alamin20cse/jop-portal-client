@@ -28,7 +28,7 @@ const JobApplay = () => {
           resume, 
         }
 
-        fetch('http://localhost:5000/job-application',{
+        fetch('https://jop-portal-server.vercel.app/job-application',{
           method:'POST',
           headers:{
             'content-type':'application/json'

@@ -50,7 +50,7 @@ const AuthProvider = ({children}) => {
             if(currentUser?.email)
             {
                 const user=currentUser.email;
-                axios.post('http://localhost:5000/jwt',{email:user},{withCredentials:true})
+                axios.post('https://jop-portal-server.vercel.app/jwt',{email:user},{withCredentials:true})
                 .then(res=>{
                     console.log('login ',res.data)
                     setloading(false);
@@ -58,9 +58,9 @@ const AuthProvider = ({children}) => {
             }
             else
             {
-                axios.post('http://localhost:5000/logout',{},{withCredentials:true})
+                axios.post('https://jop-portal-server.vercel.app/logout',{},{withCredentials:true})
                 .then(res=>{
-                    console.log('logout ',res.data)
+                    console.log('logout',res.data)
                     setloading(false);
                 });
             }

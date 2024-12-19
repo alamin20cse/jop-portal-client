@@ -36,12 +36,12 @@ import ViewApplication from "../Pages/ViewApplication";
         {
           path:'/jobs/:id',
           element:<PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/jobs/${params.id}`)
+          loader:({params})=>fetch(`https://jop-portal-server.vercel.app/jobs/${params.id}`)
         },
         {
           path:'/jobapplay/:id',
           element:<PrivateRoute><JobApplay></JobApplay></PrivateRoute>,
-          // loader:({params})=>fetch(`http://localhost:5000/jobs/${params.id}`)
+          // loader:({params})=>fetch(`https://jop-portal-server.vercel.app/jobs/${params.id}`)
         },
         {
           path:'/myapplication',
@@ -58,7 +58,7 @@ import ViewApplication from "../Pages/ViewApplication";
         {
           path:'/viewApplications/:job_id',
           element:<PrivateRoute><ViewApplication></ViewApplication></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/job-application/jobs/${params.job_id}`)
+          loader:({params})=>fetch(`https://jop-portal-server.vercel.app/job-application/jobs/${params.job_id}`)
         }
         
 
