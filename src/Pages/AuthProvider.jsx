@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/Firebase.init';
+import axios from 'axios';
+import { tr } from 'motion/react-client';
    export const AuthContex=createContext(null)
 
 
@@ -43,7 +45,26 @@ const AuthProvider = ({children}) => {
       const unsubscribe=onAuthStateChanged(auth,currentUser=>{
             setUser(currentUser);
             setloading(false);
-            // console.log(currentUser);
+            console.log('state capture',currentUser?.email);
+
+            if(currentUser?.email)
+            {
+                const user=currentUser.email;
+                axios.post('http://localhost:5000/jwt',{email:user},{withCredentials:true})
+                .then(res=>{
+                    console.log('login ',res.data)
+                    setloading(false);
+                });
+            }
+            else
+            {
+                axios.post('http://localhost:5000/logout',{},{withCredentials:true})
+                .then(res=>{
+                    console.log('logout ',res.data)
+                    setloading(false);
+                });
+            }
+            
 
 
         })

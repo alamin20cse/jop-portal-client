@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../Hooks/AuthHooks';
 import axios from 'axios';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const MyApplication = () => {
 
     const {user}=useAuth();
     const [jobs,setjobs]=useState([]);
+    const axiosSecure=useAxiosSecure();
 
     useEffect(()=>{
         // fetch(`http://localhost:5000/job-application?email=${user.email}`)
@@ -16,11 +18,12 @@ const MyApplication = () => {
         //   console.log(data);
         // });
 
-        axios.get(`http://localhost:5000/job-application?email=${user.email}`,{withCredentials:true})
-        .then(res=>setjobs(res.data))
-
-
-    },[user.email])
+        // axios.get(`http://localhost:5000/job-application?email=${user.email}`,{withCredentials:true})
+        // .then(res=>setjobs(res.data))
+ 
+        axiosSecure.get(`/job-application?email=${user.email}`)
+        .then(res=>setjobs(res.data));
+    },[user.email]) 
     return (
         <div>
             <h1>my application {jobs.length} </h1>
